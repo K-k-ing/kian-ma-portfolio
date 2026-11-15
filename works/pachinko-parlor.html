@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pachinko Parlor — Kian Kang</title>
+<meta name="description" content="One layout file — rendered, simulated and played. A scripted scene directed through an AI coding agent, with its failures left on the record.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Pachinko Parlor — Kian Kang">
+<meta property="og:description" content="One layout file — rendered, simulated and played. A scripted scene directed through an AI coding agent, with its failures left on the record.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../assets/pachinko/still.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preload" href="../assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/main.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" aria-hidden="true"></div>
+<header class="hd">
+  <a class="hd-mark" href="../index.html" aria-label="Kian Kang — home"><b>Kian Kang</b><span>Portfolio 2027</span></a>
+  <nav class="hd-nav" aria-label="Main"><a href="../index.html#works" aria-current="page" data-scramble>Works</a><a href="../index.html#about" data-scramble>About</a><a href="#contact" data-scramble>Contact</a></nav>
+  <div class="hd-xy" aria-hidden="true">X <b>0000</b> · Y <b>00000</b></div>
+</header>
+<main id="main">
+<article>
+<header class="wk-hero">
+  <div class="wk-crumb k"><a href="../index.html#works" data-scramble>← Index</a><span>04 / 05 — Playable scene · 2026</span></div>
+  <h1 class="wk-title">Pachinko Parlor</h1>
+  <div class="wk-top">
+    <p class="wk-sub">A scripted, simulated and playable scene, grown from one reference image — and directed, rather than modelled, through an <em>AI coding agent.</em></p>
+    <dl class="wk-facts"><div><dt>Role</dt><dd>Direction, reference, prompt iteration, review, acceptance</dd></div><div><dt>Year</dt><dd>November 2026</dd></div><div><dt>Built with</dt><dd>Blender + Python, Rapier, Three.js, Claude Code</dd></div><div><dt>Status</dt><dd>Playable prototype; physics validation incomplete</dd></div></dl>
+  </div>
+  <figure class="wk-cover bleed"><img src="../assets/pachinko/still.webp" width="2000" height="1077" alt="Rows of glowing pachinko machines in a red-carpeted parlor" loading="eager" decoding="async" fetchpriority="high"><figcaption class="wrap"><span>Cycles render of the scripted scene.</span><span class="sig">04</span></figcaption></figure>
+</header>
+<nav class="toc" aria-label="On this page"><a href="#film"><b>01</b>Film</a><a href="#start"><b>02</b>Starting point</a><a href="#layout"><b>03</b>One source</a><a href="#physics"><b>04</b>Simulation</a><a href="#failures"><b>05</b>Failures</a><a href="#playable"><b>06</b>Playable</a><a href="#result"><b>07</b>Result</a></nav>
+<section class="sec" id="film">
+  <div class="sec-side"><span class="sec-no">01</span><span class="sec-name">Film</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>Eight seconds, <em>nothing</em> hand-modelled.</h2>
+    <figure class="fig" data-reveal>
+  <div class="vid" data-video style="aspect-ratio:1280/690">
+    <video preload="none" playsinline controls poster="../assets/pachinko/poster.webp" src="../assets/video/pachinko-film-8s.mp4"></video>
+    <button class="vid-play" type="button" data-cursor="Play"><span class="vid-ring"></span><span class="vid-label">Play film · 00:08</span></button>
+  </div>
+  <figcaption>8-second push-in, 240 frames, rendered in Cycles. Ball motion is baked from the physics simulation; the sound is synthesised procedurally and synced to the baked collisions.</figcaption>
+</figure>
+<div class="btns" id="play"><a class="btn" href="../play/pachinko/" target="_blank" rel="noopener" data-cursor="Open"><span>Play it in the browser</span><i aria-hidden="true">↗</i></a></div>
+<p>Desktop recommended — keyboard and mouse. The playable build keeps its original Chinese interface.</p>
+  </div>
+</section>
+<section class="sec" id="start">
+  <div class="sec-side"><span class="sec-no">02</span><span class="sec-name">Starting point</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>A convincing image is not a <em>working scene.</em></h2>
+    <p class="lead">I wanted to know how far prompt-directed scene building can go beyond a good-looking render. Can the result be rebuilt from scripts, obey physics, and be played?</p>
+<p>A render can hide everything a real scene needs: where the colliders are, whether a ball can actually reach a pocket, whether anything survives a change. So I used one reference photograph as appearance guidance only, and required every element to come from a script or a data file.</p>
+<p>The build scripts, physics code and audio synthesis were written by an AI coding agent under my direction. My part was the direction itself: choosing the reference, iterating the prompts, reviewing, and deciding what counted as done.</p>
+<figure class="fig narrow" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/pachinko/machine-close.webp" width="1000" height="1000" alt="Front view of a pachinko machine with neon ring" loading="lazy" decoding="async" ></div>
+  <figcaption>The scripted machine: original “MATSURI” artwork, pins, pockets and a tray of steel balls.</figcaption>
+</figure>
+<aside class="note" data-reveal><span class="note-k">Originality</span><p>Machine names, screens and signage are original designs. No real-world brand is reproduced.</p></aside>
+  </div>
+</section>
+<section class="sec" id="layout">
+  <div class="sec-side"><span class="sec-no">03</span><span class="sec-name">One source</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>The board is <em>data</em> before it is geometry.</h2>
+    <p>A layout script defines 117 pins, the windmills, the pockets and the rails, and writes them to a single JSON file. Blender reads that file to build the machine. The browser reads the same file to build the colliders. What is rendered and what is simulated cannot drift apart.</p>
+<div class="flow" data-reveal>
+        <div class="hot"><b>01</b><span>Layout data</span><small>one JSON file</small></div>
+        <div><b>02</b><span>Textures</span><small>original artwork</small></div>
+        <div><b>03</b><span>Blender build</span><small>Python scripts</small></div>
+        <div><b>04</b><span>Physics bake</span><small>Rapier → keyframes</small></div>
+        <div><b>05</b><span>Web export</span><small>Three.js + Rapier</small></div>
+      </div>
+<figure class="fig" data-reveal>
+  <div class="cmp" data-compare style="--pos:50%">
+    <img src="../assets/pachinko/layout.webp" width="1092" height="1092" alt="Layout" loading="lazy" decoding="async" >
+    <div class="cmp-top"><img src="../assets/pachinko/bake-paths.webp" width="1092" height="1092" alt="Simulated paths" loading="lazy" decoding="async" ></div>
+    <span class="cmp-tag cmp-tag-a">Layout</span><span class="cmp-tag cmp-tag-b">Simulated paths</span>
+    <div class="cmp-handle" aria-hidden="true"><i></i></div>
+    <input type="range" min="0" max="100" value="50" aria-label="Comparison position: Layout / Simulated paths">
+  </div>
+  <figcaption>Drag to compare: the board as data, and the ball paths from one baked simulation run.</figcaption>
+</figure>
+  </div>
+</section>
+<section class="sec" id="physics">
+  <div class="sec-side"><span class="sec-no">04</span><span class="sec-name">Simulation</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>Stated per object, not per scene.</h2>
+    <div class="tbl-wrap" data-reveal><table class="tbl"><thead><tr><th>Kind</th><th>What</th></tr></thead><tbody><tr><th scope="row">Rigid bodies</th><td>Steel balls (5.5 mm radius, continuous collision detection) and the two windmills on the main machine, each on a hinge.</td></tr><tr><th scope="row">Static colliders</th><td>117 pins, back plate, glass, centre feature, pocket walls and a rubber stop.</td></tr><tr><th scope="row">Analytic constraints</th><td>The circular outer rail and the launch rail are solved as arcs, not built from collider segments.</td></tr><tr><th scope="row">Not simulated</th><td>The other machines, the room and the balls in trays are static. Camera and LEDs are hand-keyed.</td></tr></tbody></table><p class="tbl-cap">Simulation step: 1/960 s.</p></div>
+  </div>
+</section>
+<section class="sec" id="failures">
+  <div class="sec-side"><span class="sec-no">05</span><span class="sec-name">Failures</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>Three things the first attempt got wrong.</h2>
+    <div class="cards g3"><article class="card" data-reveal><span class="card-k">01</span><h4>Segmented rails make ghost collisions.</h4><p>A circle made of small boxes has seams, and balls catch on them. Decision: replace the rails with analytic arcs.</p></article><article class="card" data-reveal><span class="card-k">02</span><h4>The first engine lost speed on the rail.</h4><p>Balls sliding along the curve slowed abnormally and never reached the board. Decision: use Rapier for both bake and play.</p></article><article class="card" data-reveal><span class="card-k">03</span><h4>Importing a script rebuilt the scene.</h4><p>Two modules ran on import and silently reset every material. Decision: guard the imports; verify by re-rendering a frame and diffing it.</p></article></div>
+  </div>
+</section>
+<section class="sec" id="playable">
+  <div class="sec-side"><span class="sec-no">06</span><span class="sec-name">Playable</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>The same board, in real time.</h2>
+    <p>The browser version loads the exported models and the same layout file. Launch strength maps to the ball’s initial speed: too weak and it falls back, mid-range plays the left side, high strength plays the right.</p>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/pachinko/play-board.webp" width="1400" height="820" alt="Playable pachinko board in the browser" loading="lazy" decoding="async" ></div>
+  <figcaption>Browser prototype: the main board, counters and launch control.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/pachinko/play-hall.webp" width="1400" height="820" alt="Hall view of pachinko machines in the browser" loading="lazy" decoding="async" ></div>
+  <figcaption>Hall view: the full row of original machines.</figcaption>
+</figure></div>
+<div class="btns"><a class="btn" href="../play/pachinko/" target="_blank" rel="noopener" data-cursor="Open"><span>Play it in the browser</span><i aria-hidden="true">↗</i></a></div>
+  </div>
+</section>
+<section class="sec" id="result">
+  <div class="sec-side"><span class="sec-no">07</span><span class="sec-name">Result</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>What this shows, and what it does <em>not.</em></h2>
+    <div class="stats"><div class="stat" data-reveal><span class="stat-v">48</span><span class="stat-l">Balls launched</span><p>In one 29-second baked run.</p></div><div class="stat" data-reveal><span class="stat-v">41</span><span class="stat-l">Drained</span><p>Including stuck balls that were nudged and removed.</p></div><div class="stat" data-reveal><span class="stat-v">1</span><span class="stat-l">Start pocket</span><p>One ball entered the start pocket.</p></div><div class="stat" data-reveal><span class="stat-v">0</span><span class="stat-l">Side pockets</span><p>None. The lane pins are spaced closer than a ball.</p></div></div>
+<div class="cards g2"><article class="card" data-reveal><span class="card-k">Demonstrated</span><h4>One source, three outputs</h4><p>A scene rebuilt from scripts; one layout shared by the offline render and the real-time physics; a film, procedural audio and a playable build from the same data.</p></article><article class="card" data-reveal><span class="card-k">Not yet validated</span><h4>The game itself</h4><p>Balls queue along the lane pins. The main screen shows a fixed image and does not react to play. There is no single command that rebuilds everything from scratch.</p></article></div>
+<p class="lead">These are recorded so the next iteration has a list to fix, not a render to admire.</p>
+<aside class="note" data-reveal><span class="note-k">Boundary</span><p>Not a world-model output. The scene is reference-guided and agent-authored — it shows what a compiled scene should be able to do, not that WORLDIR can already produce it.</p></aside>
+  </div>
+</section>
+<a class="next" href="archive-terminal-07.html" data-cursor="Next">
+  <span class="next-k k"><span>Next — 05</span><span>Interactive prototype</span></span>
+  <span class="next-t">Archive Terminal 07</span>
+</a>
+</article>
+</main>
+<footer class="ft" id="contact">
+  <div class="ft-in">
+    <p class="k">Contact</p>
+    <span class="ft-big">Let’s <em>talk.</em></span>
+    <a class="ft-mail" href="mailto:122880509@qq.com" data-cursor="Write">122880509@qq.com</a>
+    <div class="ft-row k">
+      <span>© 2026 Kian Kang · Chongqing, China · <span data-clock></span></span>
+      <span class="ft-links"><a href="https://github.com/K-k-ing" target="_blank" rel="noopener" data-scramble>GitHub ↗</a><a href="../index.html#works" data-scramble>Works</a><a href="../index.html#about" data-scramble>About</a><a href="#main" data-scramble>Top ↑</a></span>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js" defer></script>
+
+</body>
+</html>

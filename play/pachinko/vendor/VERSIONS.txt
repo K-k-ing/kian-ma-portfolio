@@ -1,0 +1,4 @@
+Vendored from the supplied project; no CDN dependency.
+Three.js 0.170.0 — MIT (three/LICENSE).
+@dimforge/rapier3d-compat 0.14.0 — Apache-2.0 (rapier/LICENSE).
+Only the runtime modules and their transitive imports are included.

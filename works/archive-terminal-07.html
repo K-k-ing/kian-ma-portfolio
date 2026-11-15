@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archive Terminal 07 — Kian Kang</title>
+<meta name="description" content="A robot archivist you can walk up to and talk with — an Unreal Engine conversation prototype backed by a language model.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Archive Terminal 07 — Kian Kang">
+<meta property="og:description" content="A robot archivist you can walk up to and talk with — an Unreal Engine conversation prototype backed by a language model.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../assets/ai-npc/screens/dialogue-hero.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preload" href="../assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/main.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" aria-hidden="true"></div>
+<header class="hd">
+  <a class="hd-mark" href="../index.html" aria-label="Kian Kang — home"><b>Kian Kang</b><span>Portfolio 2027</span></a>
+  <nav class="hd-nav" aria-label="Main"><a href="../index.html#works" aria-current="page" data-scramble>Works</a><a href="../index.html#about" data-scramble>About</a><a href="#contact" data-scramble>Contact</a></nav>
+  <div class="hd-xy" aria-hidden="true">X <b>0000</b> · Y <b>00000</b></div>
+</header>
+<main id="main">
+<article>
+<header class="wk-hero">
+  <div class="wk-crumb k"><a href="../index.html#works" data-scramble>← Index</a><span>05 / 05 — Interactive prototype · 2026</span></div>
+  <h1 class="wk-title long">Archive <em>Terminal</em> 07</h1>
+  <div class="wk-top">
+    <p class="wk-sub">A robot archivist you can walk up to and talk with. An Unreal Engine prototype for putting a language model’s voice <em>inside</em> a scene.</p>
+    <dl class="wk-facts"><div><dt>Role</dt><dd>Interaction logic, dialogue UI, API handoff</dd></div><div><dt>Year</dt><dd>2026</dd></div><div><dt>Built with</dt><dd>Unreal Engine 5, Blueprint, an external language-model API</dd></div><div><dt>Status</dt><dd>Functional prototype</dd></div></dl>
+  </div>
+  <figure class="wk-cover bleed"><img src="../assets/ai-npc/screens/dialogue-hero.webp" width="1681" height="936" alt="Dialogue interface open over a forest scene in Unreal Engine" loading="eager" decoding="async" fetchpriority="high"><figcaption class="wrap"><span>The conversation opens over the forest.</span><span class="sig">05</span></figcaption></figure>
+</header>
+<nav class="toc" aria-label="On this page"><a href="#encounter"><b>01</b>Encounter</a><a href="#loop"><b>02</b>Loop</a><a href="#interface"><b>03</b>Interface</a><a href="#logic"><b>04</b>Logic</a></nav>
+<section class="sec" id="encounter">
+  <div class="sec-side"><span class="sec-no">01</span><span class="sec-name">Encounter</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>Walk up. Press E. <em>Ask.</em></h2>
+    <p class="lead">Archive Terminal 07 is a weathered robot sitting in a forest ruin. Come close enough and it offers to talk.</p>
+<p>Behind the encounter is a small, complete loop: the game notices you, hands control to a conversation, sends your words to a language model, shows the reply, remembers the exchange, and gives the world back when you leave. It is a study in placing a model’s voice <strong>inside</strong> a scene rather than beside it.</p>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-npc/screens/npc-subject.webp" width="1402" height="1122" alt="Weathered white robot torso" loading="lazy" decoding="async" ></div>
+  <figcaption>The archivist: a compact, damaged robot — a clear focal point for prompts and dialogue.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-npc/screens/proximity-state.webp" width="1680" height="936" alt="Robot in a forest ruin with an interaction prompt" loading="lazy" decoding="async" ></div>
+  <figcaption>Approaching the terminal in the forest. The prompt appears only inside its range.</figcaption>
+</figure></div>
+  </div>
+</section>
+<section class="sec" id="loop">
+  <div class="sec-side"><span class="sec-no">02</span><span class="sec-name">Loop</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>Nine states, handed over <em>explicitly.</em></h2>
+    <ol class="steps"><li data-reveal><span class="steps-n">01</span><h4>Enter range</h4><p>Proximity detection confirms the terminal can be used.</p></li><li data-reveal><span class="steps-n">02</span><h4>Prompt</h4><p>A contextual “Press E” appears.</p></li><li data-reveal><span class="steps-n">03</span><h4>Input</h4><p>The key press starts the dialogue state.</p></li><li data-reveal><span class="steps-n">04</span><h4>Interface opens</h4><p>The conversation appears over the scene.</p></li><li data-reveal><span class="steps-n">05</span><h4>Controls pause</h4><p>Movement stops while you type.</p></li><li data-reveal><span class="steps-n">06</span><h4>Send</h4><p>Your text goes through the request handler to an external API.</p></li><li data-reveal><span class="steps-n">07</span><h4>Reply</h4><p>The response is parsed and added to the visible history.</p></li><li data-reveal><span class="steps-n">08</span><h4>Close</h4><p>You dismiss the interface.</p></li><li data-reveal><span class="steps-n">09</span><h4>World returns</h4><p>Movement and camera control are restored.</p></li></ol>
+  </div>
+</section>
+<section class="sec" id="interface">
+  <div class="sec-side"><span class="sec-no">03</span><span class="sec-name">Interface</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>A conversation that stays in the world.</h2>
+    <p>The dialogue panel keeps the forest visible behind it and holds the whole exchange: input, send, clear, close, and a running history so the player can follow the context. The screenshots keep the prototype’s original Chinese interface.</p>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-npc/screens/dialogue-interface.webp" width="1681" height="936" alt="Archive Terminal 07 dialogue interface in a forest scene" loading="lazy" decoding="async" ></div>
+  <figcaption>The dialogue interface over the gameplay scene.</figcaption>
+</figure>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-npc/screens/conversation-history.webp" width="1221" height="672" alt="Dialogue UI with several messages" loading="lazy" decoding="async" ></div>
+  <figcaption>Continuous history: earlier turns stay visible.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-npc/screens/prompt-validation.webp" width="1181" height="821" alt="Greybox scene with a Press E prompt" loading="lazy" decoding="async" ></div>
+  <figcaption>Greybox test: trigger distance, prompt visibility and the handover to dialogue.</figcaption>
+</figure></div>
+  </div>
+</section>
+<section class="sec" id="logic">
+  <div class="sec-side"><span class="sec-no">04</span><span class="sec-name">Logic</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>Built in Blueprint.</h2>
+    <p>Blueprint logic coordinates interaction state, interface visibility, player input and message submission. Each component has one job in the loop.</p>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-npc/screens/blueprint-interaction-logic.webp" width="1203" height="599" alt="Unreal Engine Blueprint graph" loading="lazy" decoding="async" ></div>
+  <figcaption>Blueprint graph controlling interaction and dialogue behaviour.</figcaption>
+</figure>
+<div class="cards g4"><article class="card" data-reveal><span class="card-k">World</span><h4>Proximity + prompt</h4><p>Knows whether the player is in range, and says so.</p></article><article class="card" data-reveal><span class="card-k">Interface</span><h4>Dialogue widget</h4><p>Messages, input and controls in one container.</p></article><article class="card" data-reveal><span class="card-k">Bridge</span><h4>Request + parsing</h4><p>Sends the text to a third-party model API and reads the answer.</p></article><article class="card" data-reveal><span class="card-k">Memory</span><h4>Conversation history</h4><p>Keeps the active exchange so replies have context.</p></article></div>
+<ul class="tags"><li>Unreal Engine 5</li><li>Blueprint</li><li>UI</li><li>External language-model API</li></ul>
+<aside class="note" data-reveal><span class="note-k">Boundary</span><p>A prototype of the interaction loop, not a production service: error handling is basic, memory is limited to the active conversation, and there is no authentication or offline fallback. A video walkthrough has not been recorded yet.</p></aside>
+  </div>
+</section>
+<a class="next" href="worldir.html" data-cursor="Next">
+  <span class="next-k k"><span>Next — 01</span><span>Research system</span></span>
+  <span class="next-t">WORLDIR</span>
+</a>
+</article>
+</main>
+<footer class="ft" id="contact">
+  <div class="ft-in">
+    <p class="k">Contact</p>
+    <span class="ft-big">Let’s <em>talk.</em></span>
+    <a class="ft-mail" href="mailto:122880509@qq.com" data-cursor="Write">122880509@qq.com</a>
+    <div class="ft-row k">
+      <span>© 2026 Kian Kang · Chongqing, China · <span data-clock></span></span>
+      <span class="ft-links"><a href="https://github.com/K-k-ing" target="_blank" rel="noopener" data-scramble>GitHub ↗</a><a href="../index.html#works" data-scramble>Works</a><a href="../index.html#about" data-scramble>About</a><a href="#main" data-scramble>Top ↑</a></span>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js" defer></script>
+
+</body>
+</html>

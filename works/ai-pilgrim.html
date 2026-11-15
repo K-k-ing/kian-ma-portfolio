@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Pilgrim — Kian Kang</title>
+<meta name="description" content="A sacred science-fiction world taken from concept images to modular assets, Blender repair and real-time scenes in Unreal Engine 5.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="AI Pilgrim — Kian Kang">
+<meta property="og:description" content="A sacred science-fiction world taken from concept images to modular assets, Blender repair and real-time scenes in Unreal Engine 5.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../assets/ai-asset-pipeline/visual-direction/spacecraft-environment-concept.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preload" href="../assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/main.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" aria-hidden="true"></div>
+<header class="hd">
+  <a class="hd-mark" href="../index.html" aria-label="Kian Kang — home"><b>Kian Kang</b><span>Portfolio 2027</span></a>
+  <nav class="hd-nav" aria-label="Main"><a href="../index.html#works" aria-current="page" data-scramble>Works</a><a href="../index.html#about" data-scramble>About</a><a href="#contact" data-scramble>Contact</a></nav>
+  <div class="hd-xy" aria-hidden="true">X <b>0000</b> · Y <b>00000</b></div>
+</header>
+<main id="main">
+<article>
+<header class="wk-hero">
+  <div class="wk-crumb k"><a href="../index.html#works" data-scramble>← Index</a><span>03 / 05 — Worldbuilding · 2026</span></div>
+  <h1 class="wk-title">AI Pilgrim</h1>
+  <div class="wk-top">
+    <p class="wk-sub">A sacred science-fiction world, carried from concept images to modular 3D assets, Blender repair and real-time scenes — to find out what AI can build, and where the artist has to <em>take over.</em></p>
+    <dl class="wk-facts"><div><dt>Role</dt><dd>Art direction, pipeline design, asset repair, scene validation</dd></div><div><dt>Year</dt><dd>2026</dd></div><div><dt>Tools</dt><dd>ComfyUI, Stable Diffusion, Tripo, Blender, Unreal Engine 5</dd></div><div><dt>Status</dt><dd>Experimental workflow, documented limits</dd></div></dl>
+  </div>
+  <figure class="wk-cover bleed"><img src="../assets/ai-asset-pipeline/visual-direction/spacecraft-environment-concept.webp" width="1672" height="941" alt="White spacecraft standing in a dark, wet industrial space" loading="eager" decoding="async" fetchpriority="high"><figcaption class="wrap"><span>Vehicle concept — white ceramic, charcoal, aged gold.</span><span class="sig">03</span></figcaption></figure>
+</header>
+<nav class="toc" aria-label="On this page"><a href="#world"><b>01</b>World</a><a href="#concepts"><b>02</b>Concepts</a><a href="#generation"><b>03</b>Generation</a><a href="#breakdown"><b>04</b>Breakdown</a><a href="#repair"><b>05</b>Repair</a><a href="#stone"><b>06</b>Stone</a><a href="#realtime"><b>07</b>Real time</a><a href="#findings"><b>08</b>Findings</a></nav>
+<section class="sec" id="world">
+  <div class="sec-side"><span class="sec-no">01</span><span class="sec-name">World</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>A civilisation of <em>white machines</em> and old stone.</h2>
+    <p class="lead">AI Pilgrim imagines a sacred science-fiction culture: pilgrims in ceramic-white shells, ships that carry halos, ruins older than both.</p>
+<p>It is also a test. I wanted to know how far AI tools could carry a world from first image to a real-time scene — and exactly where a person has to step in. The goal was never to treat generated models as finished assets, but to learn what they are good for: early development, modular iteration, visual exploration.</p>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/visual-direction/hooded-character-language.webp" width="1672" height="941" alt="Close-up of a hooded mechanical figure in white" loading="lazy" decoding="async" ></div>
+  <figcaption>A hooded mechanical figure sets the tone: dark, sacred, mechanical.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/concept-development/environment-atmosphere.webp" width="1672" height="941" alt="A single figure standing beneath a vast beam of light" loading="lazy" decoding="async" ></div>
+  <figcaption>Scale and controlled light: one pilgrim under a monumental shaft of light.</figcaption>
+</figure></div>
+<div class="cards g4"><article class="card" data-reveal><span class="card-k">Style</span><h4>Sacred science fiction</h4><p>Dark sci-fi crossed with Gothic religious symbolism.</p></article><article class="card" data-reveal><span class="card-k">Palette</span><h4>Cool white, charcoal, aged gold</h4><p>Matte white as the base; black and gold only as accents.</p></article><article class="card" data-reveal><span class="card-k">Form</span><h4>Ceremony and machinery</h4><p>Halos, capes and relics rebuilt from joints, frames and damaged panels.</p></article><article class="card" data-reveal><span class="card-k">Atmosphere</span><h4>Cold and quiet</h4><p>Industrial spaces, restrained contrast, light used like architecture.</p></article></div>
+  </div>
+</section>
+<section class="sec" id="concepts">
+  <div class="sec-side"><span class="sec-no">02</span><span class="sec-name">Concepts</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>Images first, judged for what they can <em>become.</em></h2>
+    <p>I used image-generation workflows to explore characters, vehicles, drones and environments. Each image was read less as a picture and more as a brief: is the silhouette clear, can it be split into modules, will it survive 3D generation?</p>
+<div class="grid g3"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/concept-development/character-concept.webp" width="1024" height="1536" alt="Armoured pilgrim character concept in white" loading="lazy" decoding="async" ></div>
+  <figcaption>Pilgrim: ceremonial silhouette, layered mechanical anatomy.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/visual-direction/ceremonial-silhouette.webp" width="1254" height="1254" alt="Ceremonial mechanical figure with a halo and spear" loading="lazy" decoding="async" ></div>
+  <figcaption>Silhouette study with a circular halo motif.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/concept-development/architectural-ruin-concept.webp" width="1199" height="1496" alt="Monumental ruin in a forest" loading="lazy" decoding="async" ></div>
+  <figcaption>Ruin: monumental forms, stone and overgrowth.</figcaption>
+</figure></div>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/concept-development/vehicle-concept.webp" width="1672" height="941" alt="White spacecraft concept on landing legs" loading="lazy" decoding="async" ></div>
+  <figcaption>Vehicle: readable body, wings, supports and ring.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/visual-direction/spacecraft-environment-concept.webp" width="1672" height="941" alt="White spacecraft in a dark industrial environment" loading="lazy" decoding="async" ></div>
+  <figcaption>The vehicle language placed in a dark industrial space.</figcaption>
+</figure></div>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/hero/hero-concept-family.webp" width="1916" height="821" alt="Row of pilgrim characters standing beneath a white spacecraft" loading="lazy" decoding="async" ></div>
+  <figcaption>The family together: pilgrims and their ship.</figcaption>
+</figure>
+  </div>
+</section>
+<section class="sec" id="generation">
+  <div class="sec-side"><span class="sec-no">03</span><span class="sec-name">Generation</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>Four candidates, one direction.</h2>
+    <p>Several generated versions of the ship were compared for proportion, silhouette stability, mechanical detail, surface deformation and — most importantly — how well they could be taken apart.</p>
+<figure class="fig picker" data-picker data-reveal>
+  <div class="picker-stage"><div class="picker-pane is-on"><img src="../assets/ai-asset-pipeline/generation-iteration/version-01.webp" width="1122" height="1402" alt="Version 01" loading="lazy" decoding="async" ></div><div class="picker-pane"><img src="../assets/ai-asset-pipeline/generation-iteration/version-02.webp" width="1122" height="1402" alt="Version 02" loading="lazy" decoding="async" ></div><div class="picker-pane"><img src="../assets/ai-asset-pipeline/generation-iteration/version-03.webp" width="1122" height="1402" alt="Version 03" loading="lazy" decoding="async" ></div><div class="picker-pane"><img src="../assets/ai-asset-pipeline/generation-iteration/selected-direction.webp" width="1122" height="1402" alt="Selected" loading="lazy" decoding="async" ></div></div>
+  <div class="picker-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" class="is-on"><b>Version 01</b><span>A broad manta silhouette. Clean shell, little modular separation.</span></button><button type="button" role="tab" aria-selected="false" class=""><b>Version 02</b><span>Clear supports and ring; a different balance of body and wing.</span></button><button type="button" role="tab" aria-selected="false" class=""><b>Version 03</b><span>A compact drone with readable sensors and articulated legs.</span></button><button type="button" role="tab" aria-selected="false" class=""><b>Selected</b><span>The strongest modular relationships for downstream assembly.</span></button></div>
+  <figcaption>Hover or tap the versions to compare.</figcaption>
+</figure>
+  </div>
+</section>
+<section class="sec" id="breakdown">
+  <div class="sec-side"><span class="sec-no">04</span><span class="sec-name">Breakdown</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>Take it apart to make it <em>better.</em></h2>
+    <p>Complex assets were divided into smaller components: main body, ring, wings, landing supports, joints, connectors. Smaller parts generate more accurately, are easier to inspect, and can be replaced one at a time. Characters and robots follow the same logic.</p>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/modular-breakdown/spacecraft-exploded-overview.webp" width="1383" height="855" alt="Exploded, colour-coded spacecraft parts" loading="lazy" decoding="async" ></div>
+  <figcaption>Colour-coded exploded view of the ship’s modules.</figcaption>
+</figure>
+<div class="grid g3 keep even fit" style="--ar:1"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/modular-breakdown/main-body.webp" width="1448" height="1086" alt="Main body module" loading="lazy" decoding="async" ></div>
+  <figcaption>Main body</figcaption>
+</figure><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/modular-breakdown/ring-structure.webp" width="1254" height="1254" alt="Ring structure module" loading="lazy" decoding="async" ></div>
+  <figcaption>Ring structure</figcaption>
+</figure><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/modular-breakdown/wing-module.webp" width="1448" height="1086" alt="Wing module module" loading="lazy" decoding="async" ></div>
+  <figcaption>Wing module</figcaption>
+</figure><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/modular-breakdown/landing-support.webp" width="1254" height="1254" alt="Landing support module" loading="lazy" decoding="async" ></div>
+  <figcaption>Landing support</figcaption>
+</figure><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/modular-breakdown/mechanical-joint.webp" width="732" height="753" alt="Mechanical joint module" loading="lazy" decoding="async" ></div>
+  <figcaption>Mechanical joint</figcaption>
+</figure><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/modular-breakdown/connector-assembly.webp" width="638" height="645" alt="Connector assembly module" loading="lazy" decoding="async" ></div>
+  <figcaption>Connector assembly</figcaption>
+</figure></div>
+  </div>
+</section>
+<section class="sec" id="repair">
+  <div class="sec-side"><span class="sec-no">05</span><span class="sec-name">Repair</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>Where the hand comes back in.</h2>
+    <p>Parts that came out blurred, unstable or structurally wrong in a full-model generation were isolated and regenerated on their own, then reassembled in Blender — checked for scale, alignment, thickness, hierarchy and material slots before going anywhere near the engine.</p>
+<ol class="steps"><li data-reveal><span class="steps-n">01</span><h4>Review</h4><p>Inspect the full generation and mark the unstable regions.</p></li><li data-reveal><span class="steps-n">02</span><h4>Isolate</h4><p>Separate the problem part from the whole.</p></li><li data-reveal><span class="steps-n">03</span><h4>Refine</h4><p>Regenerate or replace it with a more readable version.</p></li><li data-reveal><span class="steps-n">04</span><h4>Reassemble</h4><p>Put it back, and check the complete asset again.</p></li></ol>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/local-refinement/isolated-wing.webp" width="1080" height="828" alt="Grey wing component" loading="lazy" decoding="async" ></div>
+  <figcaption>Isolated wing, before refinement.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/local-refinement/refined-wing.webp" width="1143" height="675" alt="Refined white wing component" loading="lazy" decoding="async" ></div>
+  <figcaption>Refined wing, with clearer mechanical structure.</figcaption>
+</figure></div>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/blender-inspection/modular-assembly-front.webp" width="1035" height="708" alt="Front view of spacecraft modules in Blender" loading="lazy" decoding="async" ></div>
+  <figcaption>Front alignment review in Blender.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/local-refinement/final-blender-assembly.webp" width="1826" height="1131" alt="Final spacecraft assembly in Blender" loading="lazy" decoding="async" ></div>
+  <figcaption>Final modular assembly.</figcaption>
+</figure></div>
+  </div>
+</section>
+<section class="sec" id="stone">
+  <div class="sec-side"><span class="sec-no">06</span><span class="sec-name">Stone</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>Structure before <em>surface.</em></h2>
+    <p>Environment assets took a different path. Large architectural forms were first generated as clean white models, to judge silhouette and proportion with nothing to hide behind. Only then did stone, moss, wear and roughness come in — adjusted in Blender and Unreal Engine, not accepted as a one-click output.</p>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/white-model/gate-white.webp" width="1254" height="1254" alt="White model of a ruined gate" loading="lazy" decoding="async" ></div>
+  <figcaption>Gate, white model.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/material-refinement/gate-material.webp" width="1254" height="1254" alt="Textured ruined gate with vegetation" loading="lazy" decoding="async" ></div>
+  <figcaption>Gate, material pass.</figcaption>
+</figure></div>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/white-model/architectural-white-model.webp" width="1254" height="1254" alt="White model of a large ruin" loading="lazy" decoding="async" ></div>
+  <figcaption>Modular ruin, white model.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/asset-categories/overview-environment-asset.webp" width="1254" height="1254" alt="Textured large ruin" loading="lazy" decoding="async" ></div>
+  <figcaption>Modular ruin, material pass.</figcaption>
+</figure></div>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/white-model/robot-white.webp" width="870" height="717" alt="White robot model" loading="lazy" decoding="async" ></div>
+  <figcaption>Robot, white model.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/material-refinement/robot-material.webp" width="866" height="738" alt="Weathered robot model" loading="lazy" decoding="async" ></div>
+  <figcaption>Robot after metal, roughness and wear.</figcaption>
+</figure></div>
+  </div>
+</section>
+<section class="sec" id="realtime">
+  <div class="sec-side"><span class="sec-no">07</span><span class="sec-name">Real time</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>Then walk around it.</h2>
+    <p>Selected assets were brought into Unreal Engine 5 and judged where it counts: scale against a figure, silhouette under real lighting, how materials respond, whether the pieces hold together as a place.</p>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/ue5-validation/final-environment-scene.webp" width="1932" height="1083" alt="Sunlit forest scene with a ruined gate" loading="lazy" decoding="async" ></div>
+  <figcaption>Forest scene with the modular sacred ruins, Unreal Engine 5.</figcaption>
+</figure>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/ue5-validation/character-scale-scene.webp" width="1818" height="1101" alt="Pilgrim character standing among ruins" loading="lazy" decoding="async" ></div>
+  <figcaption>A pilgrim among the ruins: character scale.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/hero/hero-ue5-integration.webp" width="1746" height="1098" alt="Spacecraft above a pilgrim and a ruined gate" loading="lazy" decoding="async" ></div>
+  <figcaption>Ship, pilgrim and gate in one frame.</figcaption>
+</figure></div>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/ue5-validation/overview-spacecraft-validation.webp" width="1821" height="1017" alt="Spacecraft in space" loading="lazy" decoding="async" ></div>
+  <figcaption>The ship in a real-time space scene.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/ai-asset-pipeline/ue5-validation/final-ruin-presentation.webp" width="1536" height="1024" alt="Ruined gate in warm light" loading="lazy" decoding="async" ></div>
+  <figcaption>Final presentation of a ruin after structure review and material refinement.</figcaption>
+</figure></div>
+  </div>
+</section>
+<section class="sec" id="findings">
+  <div class="sec-side"><span class="sec-no">08</span><span class="sec-name">Findings</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>What generated assets still get <em>wrong.</em></h2>
+    <p>No synthetic score was given. Each output was reviewed against practical criteria, and the recurring problems were written down.</p>
+<div class="cards g3"><article class="card" data-reveal><span class="card-k">01</span><h4>Thin geometry</h4><p>Wings, panels and fine structures collapse or lose readability.</p></article><article class="card" data-reveal><span class="card-k">02</span><h4>Detail deforms</h4><p>More complexity brings unstable proportions and noisy surfaces.</p></article><article class="card" data-reveal><span class="card-k">03</span><h4>Topology</h4><p>Meshes need inspection, cleanup or replacement before assembly.</p></article><article class="card" data-reveal><span class="card-k">04</span><h4>Part consistency</h4><p>Separately generated parts disagree on scale and connection points.</p></article><article class="card" data-reveal><span class="card-k">05</span><h4>Material translation</h4><p>Roughness, reflection, transparency and layered wear do not transfer reliably.</p></article><article class="card" data-reveal><span class="card-k">06</span><h4>One language</h4><p>Keeping characters, vehicles and ruins in the same visual world is hard.</p></article></div>
+<p class="lead">The most reliable workflow was not full automation. It was a controlled process in which generation, artistic judgement, modular design and real-time testing each did their part.</p>
+<ul class="tags"><li>ComfyUI</li><li>Stable Diffusion</li><li>Tripo</li><li>Blender</li><li>Unreal Engine 5</li></ul>
+<aside class="note" data-reveal><span class="note-k">Boundary</span><p>An experimental workflow with documented limitations — not a claim of production-ready, fully automated asset creation.</p></aside>
+  </div>
+</section>
+<a class="next" href="pachinko-parlor.html" data-cursor="Next">
+  <span class="next-k k"><span>Next — 04</span><span>Playable scene</span></span>
+  <span class="next-t">Pachinko Parlor</span>
+</a>
+</article>
+</main>
+<footer class="ft" id="contact">
+  <div class="ft-in">
+    <p class="k">Contact</p>
+    <span class="ft-big">Let’s <em>talk.</em></span>
+    <a class="ft-mail" href="mailto:122880509@qq.com" data-cursor="Write">122880509@qq.com</a>
+    <div class="ft-row k">
+      <span>© 2026 Kian Kang · Chongqing, China · <span data-clock></span></span>
+      <span class="ft-links"><a href="https://github.com/K-k-ing" target="_blank" rel="noopener" data-scramble>GitHub ↗</a><a href="../index.html#works" data-scramble>Works</a><a href="../index.html#about" data-scramble>About</a><a href="#main" data-scramble>Top ↑</a></span>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js" defer></script>
+
+</body>
+</html>

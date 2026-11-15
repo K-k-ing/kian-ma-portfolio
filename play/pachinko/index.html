@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<link rel="icon" href="data:,">
+<meta charset="utf-8">
+<title>Pachinko Parlor · Play | Kian Kang</title>
+<meta name="description" content="A playable pachinko prototype built with Three.js and Rapier. Desktop keyboard and mouse recommended.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  html, body { margin: 0; height: 100%; background: #050507; overflow: hidden; font-family: "Microsoft YaHei", "Yu Gothic", sans-serif; color: #fff; user-select: none; }
+  canvas { display: block; }
+  #loading { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #050507; z-index: 10; transition: opacity .6s; }
+  #loading h1 { font-size: 42px; letter-spacing: 6px; margin: 0 0 18px; color: #ffd36a; text-shadow: 0 0 24px #ff7a00; }
+  #bar { width: 320px; height: 6px; background: #222; border-radius: 3px; overflow: hidden; }
+  #bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ff3d8b, #ffd36a); transition: width .2s; }
+  #loadmsg { margin-top: 12px; font-size: 13px; color: #999; }
+  #startbtn { margin-top: 22px; padding: 12px 44px; font-size: 20px; border: 0; border-radius: 30px; background: linear-gradient(90deg, #ff3d8b, #ff9a3d); color: #fff; cursor: pointer; display: none; box-shadow: 0 0 30px #ff3d8b88; }
+  .panel { position: fixed; background: rgba(8, 8, 14, .72); border: 1px solid rgba(255, 255, 255, .14); border-radius: 12px; backdrop-filter: blur(6px); padding: 12px 16px; }
+  #stats { top: 14px; left: 14px; min-width: 190px; font-size: 14px; line-height: 1.7; }
+  #stats > div { display: flex; justify-content: space-between; align-items: baseline; }
+  #reserve { justify-content: flex-start !important; gap: 0; align-items: center !important; }
+  #stats b { font-size: 17px; color: #ffd36a; font-variant-numeric: tabular-nums; margin-left: 18px; }
+  #stats .big b { font-size: 26px; color: #fff; }
+  #reserve { margin-top: 6px; }
+  #reserve i { display: inline-block; width: 14px; height: 14px; border-radius: 50%; margin-right: 6px; background: #333; border: 1px solid #666; }
+  #reserve i.on { background: #ffcf40; box-shadow: 0 0 10px #ffb000; }
+  #help { top: 14px; right: 14px; font-size: 13px; line-height: 1.8; color: #ccc; max-width: 270px; }
+  #help kbd { background: #2a2a34; border: 1px solid #555; border-radius: 4px; padding: 0 6px; color: #fff; font-family: inherit; }
+  #ctrl { bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; }
+  #power { width: 260px; height: 18px; background: #16161d; border-radius: 9px; position: relative; overflow: hidden; border: 1px solid #444; cursor: pointer; }
+  #power i { position: absolute; left: 0; top: 0; bottom: 0; width: 45%; background: linear-gradient(90deg, #2ad1ff, #7dff6a 45%, #ffd23d 70%, #ff4d4d); }
+  #power span { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff8; }
+  button.b { border: 1px solid #666; background: #1b1b24; color: #fff; border-radius: 9px; padding: 8px 14px; font-size: 14px; cursor: pointer; font-family: inherit; }
+  button.b:hover { background: #2b2b3a; }
+  #fire { background: linear-gradient(180deg, #ff5a7a, #c81e4a); border-color: #ff8aa0; font-weight: bold; padding: 10px 22px; }
+  #fire.on { filter: brightness(1.5); box-shadow: 0 0 18px #ff4d7a; }
+  #toast { position: fixed; top: 22%; left: 50%; transform: translateX(-50%); font-size: 54px; font-weight: 900; letter-spacing: 8px; color: #fff3b0; text-shadow: 0 0 30px #ff5a00, 0 0 8px #fff; opacity: 0; transition: opacity .3s; pointer-events: none; white-space: nowrap; }
+  #plabel { font-size: 12px; color: #aaa; width: 62px; text-align: right; }
+
+  #back { position: fixed; top: 12px; left: 16px; z-index: 11; color: #ddd; font-size: 13px; text-decoration: none; padding: 6px 10px; background: rgba(8, 8, 14, .85); border: 1px solid #555; border-radius: 6px; }
+  #back:hover { color: #ffd36a; }
+  #stats { top: 52px; }
+  #help { max-width: 300px; }
+  #reserve { gap: 4px; }
+  #plabel { width: 74px; white-space: nowrap; }
+  #ctrl { max-width: calc(100vw - 24px); }
+  #ctrl button { white-space: nowrap; }
+  #toast { font-size: clamp(22px, 4vw, 54px); letter-spacing: 2px; max-width: 95vw; white-space: normal; text-align: center; }
+  :focus-visible { outline: 2px solid #ffd36a; outline-offset: 4px; }
+  @media (max-width: 700px) {
+    #help { display: none; }
+    #ctrl { width: calc(100vw - 24px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 10px; }
+    #plabel { grid-column: 1; text-align: left; }
+    #power { grid-column: 2 / 4; width: 100%; }
+    #ctrl button { padding: 10px 5px; font-size: 12px; }
+    #stats { font-size: 11px; min-width: 160px; padding: 8px 12px; }
+    #stats b { font-size: 14px; }
+    #stats .big b { font-size: 20px; }
+    #loading h1 { font-size: 32px; }
+    #bar { max-width: 85vw; }
+  }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "./vendor/three/build/three.module.js",
+  "three/addons/": "./vendor/three/examples/jsm/",
+  "@dimforge/rapier3d-compat": "./vendor/rapier/rapier.es.js"
+} }
+</script>
+</head>
+<body>
+<a id="back" href="../../works/pachinko-parlor.html#play">← Back to case study</a>
+<div id="loading"><h1>祭 FEVER</h1><div id="bar"><i></i></div><div id="loadmsg">Loading…</div><button id="startbtn">Start playing</button></div>
+<div id="stats" class="panel">
+  <div class="big">持ち玉 (Stock) <b id="s_stock">0</b></div>
+  <div>Launched <b id="s_shot">0</b></div>
+  <div>始動入賞 (Starts) <b id="s_start">0</b></div>
+  <div>大当り (Jackpots) <b id="s_jack">0</b></div>
+  <div>差玉 (Balance) <b id="s_diff">0</b></div>
+  <div id="reserve">保留 (Reserve) <i></i><i></i><i></i><i></i></div>
+</div>
+<div id="help" class="panel">
+  <div><kbd>Space</kbd> / hold <b>Launch</b>: fire continuously</div>
+  <div><kbd>←</kbd><kbd>→</kbd> or wheel: adjust launch power</div>
+  <div><kbd>B</kbd> Add 125 balls · <kbd>V</kbd> Switch view</div>
+  <div><kbd>M</kbd> Mute · drag to rotate the view</div>
+  <div style="color:#888;margin-top:4px">Low power falls back; medium power plays the left side. Enter the central <b style="color:#ffd36a">始動口 (start pocket)</b> to spin. Three matching digits trigger 大当り (jackpot) and open the lower pocket.</div>
+</div>
+<div id="ctrl" class="panel">
+  <div id="plabel">Power 45%</div>
+  <div id="power"><i></i><span style="left:14%"></span><span style="left:52%"></span></div>
+  <button id="fire" class="b">Launch (Space)</button>
+  <button id="loan" class="b">Add 125 balls</button>
+  <button id="view" class="b">View</button>
+</div>
+<div id="toast"></div>
+<script type="module" src="./game.js"></script>
+</body>
+</html>

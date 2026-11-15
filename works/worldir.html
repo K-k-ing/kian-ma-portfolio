@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WORLDIR — Kian Kang</title>
+<meta name="description" content="A scene compiler that turns world-model output into structured, traceable, editable 3D scenes — and records where the evidence runs out.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="WORLDIR — Kian Kang">
+<meta property="og:description" content="A scene compiler that turns world-model output into structured, traceable, editable 3D scenes — and records where the evidence runs out.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../assets/worldir/evidence/evidence-087.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preload" href="../assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/main.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" aria-hidden="true"></div>
+<header class="hd">
+  <a class="hd-mark" href="../index.html" aria-label="Kian Kang — home"><b>Kian Kang</b><span>Portfolio 2027</span></a>
+  <nav class="hd-nav" aria-label="Main"><a href="../index.html#works" aria-current="page" data-scramble>Works</a><a href="../index.html#about" data-scramble>About</a><a href="#contact" data-scramble>Contact</a></nav>
+  <div class="hd-xy" aria-hidden="true">X <b>0000</b> · Y <b>00000</b></div>
+</header>
+<main id="main">
+<article>
+<header class="wk-hero">
+  <div class="wk-crumb k"><a href="../index.html#works" data-scramble>← Index</a><span>01 / 05 — Research system · 2026</span></div>
+  <h1 class="wk-title">WORLDIR</h1>
+  <div class="wk-top">
+    <p class="wk-sub">A world-model assisted scene compiler: it turns what a model <em>suggests</em> into structured, traceable and editable 3D scenes — and keeps a record of where the evidence runs out.</p>
+    <dl class="wk-facts"><div><dt>Role</dt><dd>Concept, system design, experiments, review</dd></div><div><dt>Year</dt><dd>2026 — ongoing</dd></div><div><dt>Tools</dt><dd>World models, Gaussian splats, Blender, Unreal Engine, Python</dd></div><div><dt>Status</dt><dd>Research prototype; v2 in development</dd></div></dl>
+  </div>
+  <figure class="wk-cover bleed"><img src="../assets/worldir/evidence/evidence-087.webp" width="1581" height="912" alt="Corridor reconstruction in Blender with visible wireframe and a selected window asset" loading="eager" decoding="async" fetchpriority="high"><figcaption class="wrap"><span>Reconstruction → editable scene. Blender experiment — prototype evidence, not a finished world.</span><span class="sig">01</span></figcaption></figure>
+</header>
+<nav class="toc" aria-label="On this page"><a href="#question"><b>01</b>Question</a><a href="#floor"><b>02</b>Evidence</a><a href="#chair"><b>03</b>Replacement</a><a href="#shell"><b>04</b>Architecture</a><a href="#assembly"><b>05</b>Assembly</a><a href="#notebook"><b>06</b>Notebook</a><a href="#film"><b>07</b>Film</a><a href="#status"><b>08</b>Status</a></nav>
+<section class="sec" id="question">
+  <div class="sec-side"><span class="sec-no">01</span><span class="sec-name">Question</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>How does a <em>suggestion</em> become a scene?</h2>
+    <p class="lead">A world model can suggest a convincing room. A 3D scene needs things the image never promised: measurable positions, persistent structure, objects that can be selected, moved and replaced.</p>
+<p>WORLDIR is my attempt to work in the layer between the two. It treats world-model output as <strong>evidence, candidates and hypotheses</strong> — never as final geometry — and turns it into decisions that a 3D pipeline can inspect and execute.</p>
+<p>The project is a research prototype in two versions. Version 1 turns structured scene descriptions into editable Unreal Engine actors. Version 2, in development, separates what was observed from what was inferred and compiles only what has been accepted.</p>
+<div class="flow" data-reveal>
+        <div><b>01</b><span>Reference</span><small>image or world input</small></div>
+        <div><b>02</b><span>World model</span><small>semantics, layout</small></div>
+        <div><b>03</b><span>Evidence</span><small>semantic + spatial</small></div>
+        <div class="hot"><b>04</b><span>Scene graph</span><small>accepted decisions, provenance, confidence</small></div>
+        <div><b>05</b><span>Assets</span><small>generated or retrieved</small></div>
+        <div><b>06</b><span>Compiler</span><small>deterministic execution</small></div>
+        <div><b>07</b><span>Editable world</span><small>Blender / Unreal Engine</small></div>
+      </div>
+<aside class="note" data-reveal><span class="note-k">Scope</span><p>This is the architecture I am designing towards. The sections below say stage by stage what is implemented, experimental or only proposed.</p></aside>
+  </div>
+</section>
+<section class="sec" id="floor">
+  <div class="sec-side"><span class="sec-no">02</span><span class="sec-name">Evidence</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>One mesh. Nine placements. <em>Not nine guesses.</em></h2>
+    <p>The first bounded result is deliberately small: a corridor floor. The reconstruction supports six floor placements and leaves gaps. A production scene needs nine.</p>
+<p>Instead of quietly filling the gaps, WORLDIR records the three missing placements as <strong>design-inferred</strong>: they are allowed into the production scene, they are labelled, and they carry no geometric authority. All nine reuse a single mesh.</p>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/evidence/evidence-134.webp" width="2000" height="1390" alt="Diagram comparing reconstruction and production floor placements; three production placements are labelled as design-inferred." loading="lazy" decoding="async" ></div>
+  <figcaption>Reconstruction (left) keeps its unsupported gaps. Production (right) adds three placements marked as inferred, shown in yellow.</figcaption>
+</figure>
+<div class="stats"><div class="stat" data-reveal><span class="stat-v">6 + 3</span><span class="stat-l">Observed + inferred</span><p>Floor-only case. The distinction is stored, not hidden.</p></div><div class="stat" data-reveal><span class="stat-v">1</span><span class="stat-l">Mesh datablock</span><p>Shared by all nine floor placements.</p></div><div class="stat" data-reveal><span class="stat-v">17<small>/20</small></span><span class="stat-l">Pixel → XYZ queries</span><p>Supported by 3D evidence. Three fell into holes.</p></div><div class="stat" data-reveal><span class="stat-v">500k</span><span class="stat-l">Gaussian splats</span><p>Early source-space dataset. Evidence, not accuracy.</p></div></div>
+<aside class="note" data-reveal><span class="note-k">Boundary</span><p>These numbers come from different experiments. They are not one benchmark, and none of them is a measure of real-world accuracy.</p></aside>
+  </div>
+</section>
+<section class="sec" id="chair">
+  <div class="sec-side"><span class="sec-no">03</span><span class="sec-name">Replacement</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>From a reference image to an <em>editable object.</em></h2>
+    <p class="lead">The reconstruction gives me a place to work. A generated mesh gives me an object to edit. The real problem is deciding whether the two agree well enough to be used together.</p>
+<ol class="steps"><li data-reveal><span class="steps-n">01</span><h4>Prepare the reference</h4><p>Isolate the chair from the room image so generation has one focused subject.</p></li><li data-reveal><span class="steps-n">02</span><h4>Inspect the mesh</h4><p>Read the generated candidate as geometry, from four sides, part by part.</p></li><li data-reveal><span class="steps-n">03</span><h4>Fit and diagnose</h4><p>Place it against the source reconstruction; check position, orientation, scale and depth.</p></li><li data-reveal><span class="steps-n">04</span><h4>Review and accept</h4><p>Keep the disagreement on record, then make an explicit human decision.</p></li><li data-reveal><span class="steps-n">05</span><h4>Return to the scene</h4><p>The chair goes back into the room as a separate, selectable object.</p></li></ol>
+<h3 class="h3"><small>Step 01 — Reference</small>Isolate what needs to be rebuilt.</h3>
+<p>The chair in the room image is only 193 × 228 pixels. I rebuild it as a standalone appearance reference — a description of upholstery, silhouette and proportion. It is an input for generation, not a measurement of hidden geometry or of where the chair stands.</p>
+<div class="grid g2"><figure class="fig actual" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/replacement/reference-crop.webp" width="193" height="228" alt="Small crop of an office chair in a cluttered room" loading="lazy" decoding="async" ></div>
+  <figcaption>The original crop, at its real size.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/replacement/prepared-reference.webp" width="1254" height="1254" alt="Isolated tan office chair on a black background" loading="lazy" decoding="async" ></div>
+  <figcaption>Prepared reference: appearance guidance for a separate asset.</figcaption>
+</figure></div>
+<h3 class="h3"><small>Step 02 — Candidate</small>Generate an object, then read it as geometry.</h3>
+<p>An external generative-3D tool supplies the mesh. I inspect it from four native axes and colour its parts. A model’s “+Z view” is not automatically the front of the chair, so the labels keep that uncertainty.</p>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/replacement/candidate-views.webp" width="1280" height="1280" alt="Four views of a generated chair with axis labels" loading="lazy" decoding="async" ></div>
+  <figcaption>Four inspection views. Semantic directions are marked unverified.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/replacement/component-views.webp" width="1280" height="1280" alt="Four views of the chair with colour-coded components" loading="lazy" decoding="async" ></div>
+  <figcaption>Backrest, seat, support and base, colour-coded for structural comparison.</figcaption>
+</figure></div>
+<h3 class="h3"><small>Step 03 — Fit</small>Appearance is a starting point. Placement needs evidence.</h3>
+<p>The fragmented source chair holds the spatial evidence; the generated mesh offers a complete surface. Projection and depth checks reveal what a clean preview hides: an outline can look right and still sit at the wrong depth.</p>
+<div class="grid g3"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/replacement/source-chair.webp" width="960" height="960" alt="Fragmented reconstruction of a chair" loading="lazy" decoding="async" ></div>
+  <figcaption>Source proxy: incomplete spatial evidence.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/replacement/fitted-candidate.webp" width="960" height="960" alt="Textured generated chair" loading="lazy" decoding="async" ></div>
+  <figcaption>Generated candidate: complete-looking, still undecided.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/replacement/depth-diagnostic.webp" width="650" height="960" alt="Diagnostic overlay: cyan source, green depth support, orange candidate" loading="lazy" decoding="async" ></div>
+  <figcaption>Depth diagnostic, with its original “not an approved replacement” label.</figcaption>
+</figure></div>
+<div class="stats"><div class="stat" data-reveal><span class="stat-v">90.7<small>%</small></span><span class="stat-l">Held-out surface samples</span><p>Within 0.05 source units after refitting. Position, orientation and uniform scale passed.</p></div><div class="stat" data-reveal><span class="stat-v">47.5<small>%</small></span><span class="stat-l">Source-pixel depth support</span><p>An earlier, different test — not an alternative accuracy score.</p></div></div>
+<aside class="note" data-reveal><span class="note-k">Boundary</span><p>Source units are not calibrated metres. The review still found view-dependent depth differences and a backrest that extends beyond the source geometry.</p></aside>
+<h3 class="h3"><small>Step 04 — Decision</small>A useful fit still needs someone to say yes.</h3>
+<p>The first review kept the chair as a candidate, because local mismatches remained. I then reviewed it in the scene and accepted it for this example under a more permissive production tolerance. The acceptance changes the asset’s state; it does not erase the recorded differences.</p>
+<figure class="fig tall" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/replacement/pre-acceptance-review.webp" width="2000" height="2868" alt="Multi-view comparison of source and candidate chairs, labelled not accepted" loading="lazy" decoding="async" ></div>
+  <figcaption>The review sheet from before acceptance. Its “NOT accepted” labels have not been rewritten.</figcaption>
+</figure>
+<h3 class="h3"><small>Step 05 — Result</small>Replace the object. Keep the context.</h3>
+<figure class="fig" data-reveal>
+  <div class="cmp" data-compare style="--pos:50%">
+    <img src="../assets/worldir/replacement/before-placement.webp" width="960" height="960" alt="Before" loading="lazy" decoding="async" >
+    <div class="cmp-top"><img src="../assets/worldir/replacement/after-placement.webp" width="960" height="960" alt="With replacement" loading="lazy" decoding="async" ></div>
+    <span class="cmp-tag cmp-tag-a">Before</span><span class="cmp-tag cmp-tag-b">With replacement</span>
+    <div class="cmp-handle" aria-hidden="true"><i></i></div>
+    <input type="range" min="0" max="100" value="50" aria-label="Comparison position: Before / With replacement">
+  </div>
+  <figcaption>Drag to compare. Recorded Blender views, not a live reconstruction in the browser.</figcaption>
+</figure>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/replacement/room-after.webp" width="1200" height="1000" alt="Wide view of the reconstructed room with the generated chair" loading="lazy" decoding="async" ></div>
+  <figcaption>Room-scale review after manual acceptance.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/replacement/blender-selection.webp" width="1535" height="865" alt="Blender wireframe view with only the chair highlighted in orange" loading="lazy" decoding="async" ></div>
+  <figcaption>In Blender the chair is its own object, not detail baked into an image.</figcaption>
+</figure></div>
+<aside class="note" data-reveal><span class="note-k">Result</span><p>One accepted replacement, with its limitations kept. This does not establish collision readiness, metric accuracy or an automated whole-scene service.</p></aside>
+  </div>
+</section>
+<section class="sec" id="shell">
+  <div class="sec-side"><span class="sec-no">04</span><span class="sec-name">Architecture</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>Give the scene an <em>editable shell.</em></h2>
+    <p>Replacing furniture is only part of a usable scene. The room also needs walls that can be inspected and edited independently of the noisy reconstruction.</p>
+<p>I compare the room’s footprint at low, middle and high slices to separate a recurring boundary from local clutter. An opening stays a dashed line rather than becoming a measured wall.</p>
+<figure class="fig contain" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/scene-building/wall-slices.webp" width="1680" height="620" alt="Three floor-relative slices with coloured wall segments" loading="lazy" decoding="async" ></div>
+  <figcaption>Source-space boundary study at three heights. Dashed lines mark an opening.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/scene-building/wall-projection-review.webp" width="1800" height="1160" alt="Four-panel review comparing reference photo, reconstruction, shell and edge projection" loading="lazy" decoding="async" ></div>
+  <figcaption>Reference photo, reconstruction, architectural shell and projected wall edges, compared through the source camera.</figcaption>
+</figure>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/scene-building/wall-interior.webp" width="1200" height="1000" alt="Untextured interior of a generated room shell" loading="lazy" decoding="async" ></div>
+  <figcaption>Interior: the enclosure without furniture or texture.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/scene-building/wall-exterior.webp" width="1200" height="1000" alt="Exterior view of the generated room shell" loading="lazy" decoding="async" ></div>
+  <figcaption>Exterior: footprint, wall turns and the open entrance.</figcaption>
+</figure></div>
+<aside class="note" data-reveal><span class="note-k">Boundary</span><p>The reference-photo view is not independently calibrated. This is a source-space consistency check; watertightness, collision and physical dimensions need separate validation.</p></aside>
+  </div>
+</section>
+<section class="sec" id="assembly">
+  <div class="sec-side"><span class="sec-no">05</span><span class="sec-name">Assembly</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>Bring the replacements back into <em>one room.</em></h2>
+    <p>A single object can look convincing alone. Several have to work together: furniture against walls, equipment on work surfaces, everything against the surrounding layout. In these views generated geometry and retained reconstruction fragments coexist — the mixed state of a scene that is still being rebuilt.</p>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/scene-building/assembled-room.webp" width="1200" height="1000" alt="Reconstructed room with chair and architectural surfaces" loading="lazy" decoding="async" ></div>
+  <figcaption>Room-scale review: architectural surfaces and placed assets inside the reconstructed context.</figcaption>
+</figure>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/scene-building/multi-object-view-a.webp" width="1565" height="915" alt="Blender assembly view" loading="lazy" decoding="async" ></div>
+  <figcaption>Blender view A: furniture, equipment and the entrance in one scene.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/scene-building/multi-object-view-b.webp" width="1568" height="913" alt="Second Blender assembly view" loading="lazy" decoding="async" ></div>
+  <figcaption>Blender view B: the architectural boundary from another angle.</figcaption>
+</figure></div>
+<aside class="note" data-reveal><span class="note-k">Boundary</span><p>The 90.7% figure belongs to the chair test alone. These views do not establish the same fit for every asset, nor an end-to-end pipeline.</p></aside>
+  </div>
+</section>
+<section class="sec" id="notebook">
+  <div class="sec-side"><span class="sec-no">06</span><span class="sec-name">Notebook</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>Tests, failures and <em>bounded results.</em></h2>
+    <p>The useful result of an experiment is not only a better image. It is knowing what the next system has to control. Drag the strip.</p>
+<div class="ribbon" tabindex="0" aria-label="Spatial experiments">
+        <article data-reveal>
+  <span class="k"><span class="sig">Exp. 01</span> — Projection</span>
+  <div class="fig-frame"><img src="../assets/worldir/evidence/evidence-017.webp" width="1024" height="682" alt="Reference panorama compared with a Gaussian projection" loading="lazy" decoding="async" ></div>
+  <h4>Camera registration</h4>
+  <dl><dt>Question</dt><dd>Can a reconstructed source align with a reference camera?</dd><dt>Result</dt><dd>Projection alignment tested. Later supplementary views stayed unregistered.</dd></dl>
+</article>
+        <article data-reveal>
+  <span class="k"><span class="sig">Exp. 02</span> — Source space</span>
+  <div class="fig-frame"><img src="../assets/worldir/evidence/evidence-092.webp" width="1200" height="779" alt="Corridor projection with confidence-labelled splat samples" loading="lazy" decoding="async" ></div>
+  <h4>Gaussian / PLY queries</h4>
+  <dl><dt>Question</dt><dd>What spatial evidence can a visual reconstruction give?</dd><dt>Result</dt><dd>Source-space queries with confidence overlays. Not calibrated metric geometry.</dd></dl>
+</article>
+        <article data-reveal>
+  <span class="k"><span class="sig">Exp. 03</span> — Mesh repair</span>
+  <div class="fig-frame"><img src="../assets/worldir/evidence/evidence-071.webp" width="1589" height="913" alt="A sofa reconstructed as disconnected fragments" loading="lazy" decoding="async" ></div>
+  <h4>Fragmented reconstruction</h4>
+  <dl><dt>Question</dt><dd>Why did dense output become disconnected fragments?</dd><dt>Result</dt><dd>After a weight-key repair, 99.471% of faces belong to the largest component. Residual defects remain.</dd></dl>
+</article>
+        <article data-reveal>
+  <span class="k"><span class="sig">Exp. 04</span> — Candidate fit</span>
+  <div class="fig-frame"><img src="../assets/worldir/evidence/evidence-065.webp" width="1347" height="869" alt="Generated chair placed in a reconstructed room" loading="lazy" decoding="async" ></div>
+  <h4>External asset fitting</h4>
+  <dl><dt>Question</dt><dd>Can an outside asset occupy reconstructed space?</dd><dt>Result</dt><dd>Chair fitting with held-out geometry checks — a manual threshold, not automatic success.</dd></dl>
+</article>
+        <article data-reveal>
+  <span class="k"><span class="sig">Exp. 05</span> — Pixel → XYZ</span>
+  <div class="fig-frame"><img src="../assets/worldir/evidence/evidence-027.webp" width="2000" height="1264" alt="Panorama with supported and unsupported query points" loading="lazy" decoding="async" ></div>
+  <h4>Single-view estimation</h4>
+  <dl><dt>Question</dt><dd>Where does a pixel have 3D support?</dd><dt>Result</dt><dd>17 of 20 queried points supported; three fell into holes. Uncertainty is part of the output.</dd></dl>
+</article>
+      </div>
+<div class="grid g2"><figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/evidence/evidence-071.webp" width="1589" height="913" alt="Fragmented sofa mesh in Blender" loading="lazy" decoding="async" ></div>
+  <figcaption>Exp. 03, before: the sofa as disconnected fragments.</figcaption>
+</figure>
+<figure class="fig" data-zoom data-reveal>
+  <div class="fig-frame"><img src="../assets/worldir/evidence/evidence-074.webp" width="882" height="507" alt="Repaired sofa mesh" loading="lazy" decoding="async" ></div>
+  <figcaption>Exp. 03, after the repair: a substantially continuous surface.</figcaption>
+</figure></div>
+<div class="cards g3"><article class="card" data-reveal><span class="card-k">Spatial uncertainty</span><h4>Single-view depth is ambiguous.</h4><p>A plausible view leaves scale, occlusion and camera pose unresolved. Decision: keep unsupported space explicit.</p></article><article class="card" data-reveal><span class="card-k">Representation gap</span><h4>Reconstruction is not production geometry.</h4><p>An early mesh of about 529k vertices and 939k faces was fragmented. Decision: inspect geometry, not the preview.</p></article><article class="card" data-reveal><span class="card-k">Placement authority</span><h4>An asset is not a scene decision.</h4><p>A generated chair can look right and still disagree with source depth. Decision: fit and validate before acceptance.</p></article></div>
+  </div>
+</section>
+<section class="sec" id="film">
+  <div class="sec-side"><span class="sec-no">07</span><span class="sec-name">Film</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>See the direction.</h2>
+    <figure class="fig" data-reveal>
+  <div class="vid" data-video style="aspect-ratio:1581/912">
+    <video preload="none" playsinline controls poster="../assets/worldir/evidence/evidence-087.webp" src="../assets/video/worldir-film.mp4"></video>
+    <button class="vid-play" type="button" data-cursor="Play"><span class="vid-ring"></span><span class="vid-label">Play film · 01:37</span></button>
+  </div>
+  <figcaption>Prototype film, 01:37. It presents the prototype and its intended architecture; the implemented scope is the one documented on this page.</figcaption>
+</figure>
+  </div>
+</section>
+<section class="sec" id="status">
+  <div class="sec-side"><span class="sec-no">08</span><span class="sec-name">Status</span></div>
+  <div class="sec-main">
+    <h2 data-reveal>What exists, and what does not.</h2>
+    <div class="tbl-wrap" data-reveal><table class="tbl"><thead><tr><th>State</th><th>What</th></tr></thead><tbody><tr><th scope="row">Implemented</th><td>v1 structured Unreal actor assembly; v2 observed / inferred floor records and one-mesh placement compilation.</td></tr><tr><th scope="row">Experimental</th><td>World-model layout baseline, Gaussian / PLY queries, camera registration, mesh-repair experiments, isolated asset fitting.</td></tr><tr><th scope="row">In development</th><td>A general scene graph, and integration of the separate pipeline stages.</td></tr><tr><th scope="row">Proposed</th><td>A general asset resolver and a complete Blender-to-Unreal validation loop.</td></tr><tr><th scope="row">Future</th><td>Interactive, exploration-conditioned generation and continuous world building.</td></tr></tbody></table></div>
+<p>My contribution is the workflow that connects these pieces: reference preparation, candidate inspection, source-space fitting, diagnostic comparison and scene review. External models provide the reconstruction and the generated assets. What I add is the structure that makes acceptance explicit.</p>
+  </div>
+</section>
+<a class="next" href="mate.html" data-cursor="Next">
+  <span class="next-k k"><span>Next — 02</span><span>Artist tool</span></span>
+  <span class="next-t">MATE</span>
+</a>
+</article>
+</main>
+<footer class="ft" id="contact">
+  <div class="ft-in">
+    <p class="k">Contact</p>
+    <span class="ft-big">Let’s <em>talk.</em></span>
+    <a class="ft-mail" href="mailto:122880509@qq.com" data-cursor="Write">122880509@qq.com</a>
+    <div class="ft-row k">
+      <span>© 2026 Kian Kang · Chongqing, China · <span data-clock></span></span>
+      <span class="ft-links"><a href="https://github.com/K-k-ing" target="_blank" rel="noopener" data-scramble>GitHub ↗</a><a href="../index.html#works" data-scramble>Works</a><a href="../index.html#about" data-scramble>About</a><a href="#main" data-scramble>Top ↑</a></span>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js" defer></script>
+
+</body>
+</html>
